@@ -77,7 +77,7 @@ class RouteRegistrar
         }
 
         $fullyQualifiedClassName = $this->fullQualifiedClassNameFromFile($path);
-
+        dump('Register fqcn ' . $fullyQualifiedClassName);
         $this->processAttributes($fullyQualifiedClassName);
     }
 
