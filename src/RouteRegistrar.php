@@ -63,9 +63,6 @@ class RouteRegistrar
         $directories = Arr::wrap($directories);
 
         $files = (new Finder())->files()->name('*.php')->in($directories);
-        collect($files)->each(function (SplFileInfo $file) {
-            dump('register ' . $file->getRealPath());
-        });
         collect($files)->each(fn (SplFileInfo $file) => $this->registerFile($file));
     }
 
@@ -76,7 +73,7 @@ class RouteRegistrar
         }
 
         $fullyQualifiedClassName = $this->fullQualifiedClassNameFromFile($path);
-        dump('Register fqcn ' . $fullyQualifiedClassName);
+        dump('Register ' . $path->getRealPath() . ' ::: fqcn ' . $fullyQualifiedClassName);
         $this->processAttributes($fullyQualifiedClassName);
     }
 
@@ -100,7 +97,9 @@ class RouteRegistrar
 
     protected function processAttributes(string $className): void
     {
+        dump('Process ' . $className);
         if (! class_exists($className)) {
+            dump('Not found!');
             return;
         }
 
