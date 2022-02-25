@@ -42,29 +42,29 @@ class RouteRegistrarTest extends TestCase
     // }
 
     /** @test */
-    // public function the_registrar_can_register_a_whole_directory()
-    // {
-    //     $this
-    //         ->routeRegistrar
-    //         ->registerDirectory($this->getTestPath('TestClasses/Controllers/RouteRegistrar'));
+    public function the_registrar_can_register_a_whole_directory()
+    {
+        $this
+            ->routeRegistrar
+            ->registerDirectory($this->getTestPath('TestClasses/Controllers/RouteRegistrar'));
 
-    //     $this->assertRegisteredRoutesCount(3);
+        $this->assertRegisteredRoutesCount(3);
 
-    //     $this->assertRouteRegistered(
-    //         RegistrarTestFirstController::class,
-    //         uri: 'first-method',
-    //     );
+        $this->assertRouteRegistered(
+            RegistrarTestFirstController::class,
+            uri: 'first-method',
+        );
 
-    //     $this->assertRouteRegistered(
-    //         RegistrarTestSecondController::class,
-    //         uri: 'second-method',
-    //     );
+        $this->assertRouteRegistered(
+            RegistrarTestSecondController::class,
+            uri: 'second-method',
+        );
 
-    //     $this->assertRouteRegistered(
-    //         RegistrarTestControllerInSubDirectory::class,
-    //         uri: 'in-sub-directory',
-    //     );
-    // }
+        $this->assertRouteRegistered(
+            RegistrarTestControllerInSubDirectory::class,
+            uri: 'in-sub-directory',
+        );
+    }
 
     /** @test */
     public function the_register_can_register_a_directory_with_defined_namespace()
