@@ -75,6 +75,9 @@ class RouteRegistrarTest extends TestCase
             ->useRootNamespace('ThirdParty\Http\Controllers\\')
             ->registerDirectory($this->getTestPath('ThirdPartyTestClasses/Controllers'));
 
+        $controller = new ThirdPartyController();
+        echo $controller->debugging();
+
         $this->assertRegisteredRoutesCount(1);
         $this->assertRouteRegistered(
             ThirdPartyController::class,

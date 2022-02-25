@@ -10,4 +10,9 @@ class ThirdPartyController
     public function thirdPartyGetMethod()
     {
     }
+
+    public function debugging(): string
+    {
+        return 'Here I am. Will you send me an angel?';
+    }
 }
