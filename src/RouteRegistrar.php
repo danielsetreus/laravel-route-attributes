@@ -84,14 +84,15 @@ class RouteRegistrar
 
     protected function fullQualifiedClassNameFromFile(SplFileInfo $file): string
     {
+        dump('Remove ' . $this->basePath . ' from ' . $file->getRealPath());
         $class = trim(Str::replaceFirst($this->basePath, '', $file->getRealPath()), DIRECTORY_SEPARATOR);
-
+        dump('... leaving ' . $class);
         $class = str_replace(
             [DIRECTORY_SEPARATOR, 'App\\'],
             ['\\', app()->getNamespace()],
             ucfirst(Str::replaceLast('.php', '', $class))
         );
-
+        dump('... finally gettign ' . $class);
         return $this->rootNamespace . $class;
     }
 
