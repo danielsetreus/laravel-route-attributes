@@ -73,7 +73,6 @@ class RouteRegistrar
         }
 
         $fullyQualifiedClassName = $this->fullQualifiedClassNameFromFile($path);
-        dump('Register ' . $path->getRealPath() . ' ::: fqcn ' . $fullyQualifiedClassName);
         $this->processAttributes($fullyQualifiedClassName);
     }
 
@@ -97,10 +96,7 @@ class RouteRegistrar
 
     protected function processAttributes(string $className): void
     {
-        dump('Process ' . $className);
         if (! class_exists($className)) {
-            dump('Not found!');
-
             return;
         }
 
