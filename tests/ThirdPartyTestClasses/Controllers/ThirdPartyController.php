@@ -1,6 +1,6 @@
 <?php
 
-namespace ThirdParty\Http\Controllers;
+namespace ThirdParty\Controllers;
 
 use Spatie\RouteAttributes\Attributes\Get;
 

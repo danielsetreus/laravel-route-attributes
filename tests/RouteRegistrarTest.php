@@ -5,8 +5,7 @@ namespace Spatie\RouteAttributes\Tests;
 use Spatie\RouteAttributes\Tests\TestClasses\Controllers\RouteRegistrar\RegistrarTestFirstController;
 use Spatie\RouteAttributes\Tests\TestClasses\Controllers\RouteRegistrar\RegistrarTestSecondController;
 use Spatie\RouteAttributes\Tests\TestClasses\Controllers\RouteRegistrar\SubDirectory\RegistrarTestControllerInSubDirectory;
-use Spatie\RouteAttributes\Tests\TestClasses\Middleware\AnotherTestMiddleware;
-use ThirdParty\Http\Controllers\ThirdPartyController;
+use ThirdParty\Controllers\ThirdPartyController;
 
 class RouteRegistrarTest extends TestCase
 {
@@ -48,6 +47,8 @@ class RouteRegistrarTest extends TestCase
             ->routeRegistrar
             ->registerDirectory($this->getTestPath('TestClasses/Controllers/RouteRegistrar'));
 
+        dump(collect($this->getRouteCollection()->getRoutes())->map(fn ($route) => $route->uri()));
+
         $this->assertRegisteredRoutesCount(3);
 
         $this->assertRouteRegistered(
@@ -72,7 +73,7 @@ class RouteRegistrarTest extends TestCase
         require_once(__DIR__ . '/ThirdPartyTestClasses/Controllers/ThirdPartyController.php');
         $this->routeRegistrar
             ->useBasePath($this->getTestPath('ThirdPartyTestClasses/Controllers'))
-            ->useRootNamespace('ThirdParty\Http\Controllers\\')
+            ->useRootNamespace('ThirdParty\Controllers\\')
             ->registerDirectory($this->getTestPath('ThirdPartyTestClasses/Controllers'));
 
         $controller = new ThirdPartyController();
