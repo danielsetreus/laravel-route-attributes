@@ -100,6 +100,7 @@ class RouteRegistrar
         dump('Process ' .  $className);
         if (! class_exists($className)) {
             dump('-- not found!');
+
             return;
         }
 
