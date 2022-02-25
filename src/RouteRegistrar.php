@@ -93,6 +93,7 @@ class RouteRegistrar
             ucfirst(Str::replaceLast('.php', '', $class))
         );
         dump('... finally gettign ' . $class);
+
         return $this->rootNamespace . $class;
     }
 
