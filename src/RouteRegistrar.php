@@ -61,9 +61,8 @@ class RouteRegistrar
     public function registerDirectory(string | array $directories): void
     {
         $directories = Arr::wrap($directories);
-
+        dump('Register dirs', json_encode($directories));
         $files = (new Finder())->files()->name('*.php')->in($directories);
-
         collect($files)->each(fn (SplFileInfo $file) => $this->registerFile($file));
     }
 
@@ -74,7 +73,7 @@ class RouteRegistrar
         }
 
         $fullyQualifiedClassName = $this->fullQualifiedClassNameFromFile($path);
-
+        dump('Register fqdn ' .  $fullyQualifiedClassName);
         $this->processAttributes($fullyQualifiedClassName);
     }
 
@@ -85,20 +84,25 @@ class RouteRegistrar
 
     protected function fullQualifiedClassNameFromFile(SplFileInfo $file): string
     {
+        dump('Remove ' . $this->basePath . ' from ' . $file->getRealPath());
         $class = trim(Str::replaceFirst($this->basePath, '', $file->getRealPath()), DIRECTORY_SEPARATOR);
-
+        dump('... leaving ' . $class);
         $class = str_replace(
             [DIRECTORY_SEPARATOR, 'App\\'],
             ['\\', app()->getNamespace()],
             ucfirst(Str::replaceLast('.php', '', $class))
         );
+        dump('... finally gettign ' . $class);
 
         return $this->rootNamespace . $class;
     }
 
     protected function processAttributes(string $className): void
     {
+        dump('Process ' .  $className);
         if (! class_exists($className)) {
+            dump('-- not found!');
+
             return;
         }
 
