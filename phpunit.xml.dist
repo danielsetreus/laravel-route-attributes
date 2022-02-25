@@ -13,6 +13,7 @@
     <testsuites>
         <testsuite name="Spatie Test Suite">
             <directory>tests</directory>
+            <exclude>tests/AttributeTests/</exclude>
         </testsuite>
     </testsuites>
     <coverage>
